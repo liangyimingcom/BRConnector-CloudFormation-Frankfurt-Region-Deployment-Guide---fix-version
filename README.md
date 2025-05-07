@@ -312,9 +312,53 @@ curl -X POST 'https://xxxxx.cloudfront.net/v1/chat/completions' \
 
 
 
+## 五、⾼并发压⼒在 Bedrock上的建议与最佳实践 
+
+### 1、Bedrock配额调整需求
+
+模型默认配额情况(以美⻄2区为例):
+
+**<u>Nova Pro:</u>**
+**200 RPM** (每分钟请求数) tokens per minute
+**800K TPM**(每分钟令牌数) Requests per minute
+
+<u>Claude-3.5:</u>
+250 RPM (每分钟请求数) tokens per minute
+2M TPM (每分钟令牌数) Requests per minute
+
+**配额提升建议:**
+
+- 在Service Quota中检查当前限制
+- 根据业务需求评估稳定状态(steady)和峰值(peak)的RPM和TPM
+- 提前申请提升配额
+
+**AWS Console查询⽅法和修改⽅法（图⽂教程）**
+https://eu-central-1.console.aws.amazon.com/servicequotas/home/services/bedrock/quotas?region=eu-central-1
+
+**关键字：tokens per minute**
+
+![image-20250507151233773](./assets/image-20250507151233773.png)
+
+**关键字：Requests per minute**
+
+![image-20250507151248662](./assets/image-20250507151248662.png)
 
 
-## 五、如何troubleshooting BRConnector + AWS Bedrock
+
+**2）Bedrock的功能优化建议**
+
+- 开启：Bedrock跨区域⽀持:
+- 启⽤Cross Region功能
+
+- 后端⾃动路由机制
+
+
+
+
+
+
+
+## 六、如何troubleshooting BRConnector + AWS Bedrock
 
 #### 1. Troubleshooting BRConnector 
 
